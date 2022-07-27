@@ -5,10 +5,10 @@ Subject: [PATCH] Allow delegation to vanilla chunk gen
 
 
 diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
-index 2af2a948dc9c0d4ad28fccb1c9a2b28d5db99203..416d402b7e885ccc9b187a8e8111da2378197b45 100644
+index 05186443e25706ed77f7187eea6ac84666613a88..23834c3bd3a5e008b1b05c99a7b2f491731d8459 100644
 --- a/src/main/java/org/bukkit/Bukkit.java
 +++ b/src/main/java/org/bukkit/Bukkit.java
-@@ -1848,6 +1848,24 @@ public final class Bukkit {
+@@ -1892,6 +1892,24 @@ public final class Bukkit {
          return server.createChunkData(world);
      }
  
@@ -34,10 +34,10 @@ index 2af2a948dc9c0d4ad28fccb1c9a2b28d5db99203..416d402b7e885ccc9b187a8e8111da23
       * Creates a boss bar instance to display to players. The progress
       * defaults to 1.0
 diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
-index 1d2970dc4d18122e95db8cc9830aa5c41a59e24b..d90026c9331321ca749f7090b76c21b4608b2ee8 100644
+index 3d78e555725b48cb7e5750e8b4b3f1f0463bddc2..515e1bc18e04cd94b5aa7b00434a72381277e678 100644
 --- a/src/main/java/org/bukkit/Server.java
 +++ b/src/main/java/org/bukkit/Server.java
-@@ -1553,6 +1553,22 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
+@@ -1589,6 +1589,22 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
      @NotNull
      public ChunkGenerator.ChunkData createChunkData(@NotNull World world);
  
@@ -61,7 +61,7 @@ index 1d2970dc4d18122e95db8cc9830aa5c41a59e24b..d90026c9331321ca749f7090b76c21b4
       * Creates a boss bar instance to display to players. The progress
       * defaults to 1.0
 diff --git a/src/main/java/org/bukkit/generator/ChunkGenerator.java b/src/main/java/org/bukkit/generator/ChunkGenerator.java
-index d14d3851a7b0340668f44f5213f0e18072d7481b..04be4214bc1c4b476c70aea457118e786fa67eff 100644
+index e70e6949a9d5a5a37f0c92e139071d4060548e96..ef756dcd55146af71649658eadc45b70d3ba057f 100644
 --- a/src/main/java/org/bukkit/generator/ChunkGenerator.java
 +++ b/src/main/java/org/bukkit/generator/ChunkGenerator.java
 @@ -454,6 +454,22 @@ public abstract class ChunkGenerator {

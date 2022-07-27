@@ -6,7 +6,7 @@ Subject: [PATCH] Graduate bungeecord chat API from spigot subclasses
 Change Javadoc to be accurate
 
 diff --git a/src/main/java/org/bukkit/Bukkit.java b/src/main/java/org/bukkit/Bukkit.java
-index b9bdd75beb5888bde6f6486a785d45cb61da4b8a..bd010258807bac5c495671052b143063ad784577 100644
+index d225e4a5587aa76a85a4b56e11d4563bdc97fe3f..e13ffa85390f2feda49309ba02ccf75856e4c8f2 100644
 --- a/src/main/java/org/bukkit/Bukkit.java
 +++ b/src/main/java/org/bukkit/Bukkit.java
 @@ -378,6 +378,30 @@ public final class Bukkit {
@@ -41,7 +41,7 @@ index b9bdd75beb5888bde6f6486a785d45cb61da4b8a..bd010258807bac5c495671052b143063
       * Gets the name of the update folder. The update folder is used to safely
       * update plugins at the right moment on a plugin load.
 diff --git a/src/main/java/org/bukkit/Server.java b/src/main/java/org/bukkit/Server.java
-index 94f242adad348f8a33e7d319d1835d6eba584c2b..d75b565774948cb3ae89775b0e3e42ae9358004b 100644
+index f6f3297231d3a9e9f142faf992437cc99e241109..1dcf90071bae51e6b767ac26eb6624d372acac68 100644
 --- a/src/main/java/org/bukkit/Server.java
 +++ b/src/main/java/org/bukkit/Server.java
 @@ -311,6 +311,30 @@ public interface Server extends PluginMessageRecipient, net.kyori.adventure.audi
@@ -76,10 +76,10 @@ index 94f242adad348f8a33e7d319d1835d6eba584c2b..d75b565774948cb3ae89775b0e3e42ae
       * Gets the name of the update folder. The update folder is used to safely
       * update plugins at the right moment on a plugin load.
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index 2d93f5ad7f9c0df08bcd099a813c1d8e9b8c16eb..365b2e806d9219d9dc2d2e85cc442b03af812b8d 100644
+index b362a0e3954a2a58b896a9951f3e31c1706959ec..84172c4356dd15e0d7de611d871584d8bb69b974 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
-@@ -733,6 +733,42 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+@@ -747,6 +747,42 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
       */
      public void sendMap(@NotNull MapView map);
  

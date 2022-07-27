@@ -8,10 +8,10 @@ Adds API's to load or generate chunks asynchronously.
 Also adds utility methods to Entity to teleport asynchronously.
 
 diff --git a/src/main/java/org/bukkit/World.java b/src/main/java/org/bukkit/World.java
-index 39f7817838c73c78f138c98546a1b797e7529550..fc8631f45abaaabe2cdb7653c43b98b36a80ec78 100644
+index 324fca7bf480a463adb30842fa169052534f5252..3e3682be2a1afe92ccdc9a1d97469a69f952a9ed 100644
 --- a/src/main/java/org/bukkit/World.java
 +++ b/src/main/java/org/bukkit/World.java
-@@ -964,6 +964,482 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
+@@ -969,6 +969,482 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
          }
          return nearby;
      }

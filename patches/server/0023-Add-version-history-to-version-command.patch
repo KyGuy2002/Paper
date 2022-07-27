@@ -5,7 +5,7 @@ Subject: [PATCH] Add version history to version command
 
 
 diff --git a/src/main/java/com/destroystokyo/paper/PaperVersionFetcher.java b/src/main/java/com/destroystokyo/paper/PaperVersionFetcher.java
-index 91d7afc710a2d52b4f429e0381cf64176ecb6415..ece77f5ea4b14bbed7c070131b3251ea86764538 100644
+index 351159bbdb0c8045f4983f54dee34430dbcc423e..bf42969859545a8a520923ef1836ffa4a5cc24a0 100644
 --- a/src/main/java/com/destroystokyo/paper/PaperVersionFetcher.java
 +++ b/src/main/java/com/destroystokyo/paper/PaperVersionFetcher.java
 @@ -7,6 +7,8 @@ import com.google.gson.*;
@@ -201,13 +201,13 @@ index 0000000000000000000000000000000000000000..aac3f66cb23d260729c2a48d8710a9de
 +    }
 +}
 diff --git a/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java b/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java
-index 1c0fefd539ef82d2d1b33a4974d67dc35ded0e1f..20ff08f1a802d16d2306b570e9fb529946d90f6b 100644
+index cd0365249dffc1704a349a5e419364bbf9e8543b..2f2e07094a362ea1f459da85eb9ef84945a6e206 100644
 --- a/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java
 +++ b/src/main/java/net/minecraft/server/dedicated/DedicatedServer.java
-@@ -204,6 +204,7 @@ public class DedicatedServer extends MinecraftServer implements ServerInterface
-             return false;
-         }
-         com.destroystokyo.paper.PaperConfig.registerCommands();
+@@ -194,6 +194,7 @@ public class DedicatedServer extends MinecraftServer implements ServerInterface
+         paperConfigurations.initializeWorldDefaultsConfiguration();
+         io.papermc.paper.command.PaperCommands.registerCommands(this);
+         com.destroystokyo.paper.Metrics.PaperMetrics.startMetrics();
 +        com.destroystokyo.paper.VersionHistoryManager.INSTANCE.getClass(); // load version history now
          // Paper end
  
