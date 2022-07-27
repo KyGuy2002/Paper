@@ -5,24 +5,11 @@ Subject: [PATCH] Show 'Paper' in client crashes, server lists, and Mojang
  stats
 
 
-diff --git a/src/main/java/net/minecraft/server/Eula.java b/src/main/java/net/minecraft/server/Eula.java
-index f092497b6defd28c94393e483a9288d121158a1e..df44790b1c342d0a6ff794bea86319fa7498cbae 100644
---- a/src/main/java/net/minecraft/server/Eula.java
-+++ b/src/main/java/net/minecraft/server/Eula.java
-@@ -64,7 +64,7 @@ public class Eula {
-                 try {
-                     Properties properties = new Properties();
-                     properties.setProperty("eula", "false");
--                    properties.store(outputStream, "By changing the setting below to TRUE you are indicating your agreement to our EULA (https://account.mojang.com/documents/minecraft_eula).");
-+                    properties.store(outputStream, "By changing the setting below to TRUE you are indicating your agreement to our EULA (https://account.mojang.com/documents/minecraft_eula).\nYou also agree that tacos are tasty, and the best food in the world.");  // Paper - fix lag;
-                 } catch (Throwable var5) {
-                     if (outputStream != null) {
-                         try {
 diff --git a/src/main/java/net/minecraft/server/MinecraftServer.java b/src/main/java/net/minecraft/server/MinecraftServer.java
-index 3112f15993972c90d5bb797638a0186d88b403dc..8bacbb2289a9e5203766d71be6ba0a31f48b626e 100644
+index 53b04533ea2a9783e281507e996804357946f7d5..722d9a37b2132a246dbb8e19d4e393be684e0f6f 100644
 --- a/src/main/java/net/minecraft/server/MinecraftServer.java
 +++ b/src/main/java/net/minecraft/server/MinecraftServer.java
-@@ -1460,7 +1460,7 @@ public abstract class MinecraftServer extends ReentrantBlockableEventLoop<TickTa
+@@ -1416,7 +1416,7 @@ public abstract class MinecraftServer extends ReentrantBlockableEventLoop<TickTa
  
      @DontObfuscate
      public String getServerModName() {
@@ -32,10 +19,10 @@ index 3112f15993972c90d5bb797638a0186d88b403dc..8bacbb2289a9e5203766d71be6ba0a31
  
      public SystemReport fillSystemReport(SystemReport details) {
 diff --git a/src/main/java/org/bukkit/craftbukkit/CraftServer.java b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
-index ba53a17a8730344882502995245171190b2de5ee..ad70bb6419bdfa75ffc8ce4f42150097ef0ead0f 100644
+index a9d9bc91b150597275d9b15f21dc00b49c5e3b28..ae2912c8cb89208a7bbbcdb6e6f143ebc98e8180 100644
 --- a/src/main/java/org/bukkit/craftbukkit/CraftServer.java
 +++ b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
-@@ -245,7 +245,7 @@ import org.yaml.snakeyaml.error.MarkedYAMLException;
+@@ -244,7 +244,7 @@ import org.yaml.snakeyaml.error.MarkedYAMLException;
  import net.md_5.bungee.api.chat.BaseComponent; // Spigot
  
  public final class CraftServer implements Server {
@@ -45,11 +32,11 @@ index ba53a17a8730344882502995245171190b2de5ee..ad70bb6419bdfa75ffc8ce4f42150097
      private final String bukkitVersion = Versioning.getBukkitVersion();
      private final Logger logger = Logger.getLogger("Minecraft");
 diff --git a/src/main/java/org/bukkit/craftbukkit/Main.java b/src/main/java/org/bukkit/craftbukkit/Main.java
-index 7e5fc58f43836edab3696b9644264434c5a95a2f..1ea304aaf85ada7737f62248f7b8cd44c800505e 100644
+index 155087d30e826205088ad9d449b33d4b29dca716..8962c8669802dabd6a7bc5b6e506f5d921becea2 100644
 --- a/src/main/java/org/bukkit/craftbukkit/Main.java
 +++ b/src/main/java/org/bukkit/craftbukkit/Main.java
-@@ -216,12 +216,25 @@ public class Main {
-                     deadline.add(Calendar.DAY_OF_YEAR, -3);
+@@ -221,12 +221,25 @@ public class Main {
+                     deadline.add(Calendar.DAY_OF_YEAR, -14);
                      if (buildDate.before(deadline.getTime())) {
                          System.err.println("*** Error, this build is outdated ***");
 -                        System.err.println("*** Please download a new build as per instructions from https://www.spigotmc.org/go/outdated-spigot ***");

@@ -21,10 +21,10 @@ index 5c3b11f738c1ea19981cc878aa6c2323497391a0..b91a61be7c4829fce0ff8da290eab580
      public static Predicate<Entity> withinDistance(double x, double y, double z, double max) {
          double d4 = max * max;
 diff --git a/src/main/java/net/minecraft/world/entity/Mob.java b/src/main/java/net/minecraft/world/entity/Mob.java
-index fca40a6ec865589392911beaf07092b7d1c61a47..eb4b21802eefe91753caf509458fd6d9dd901c25 100644
+index 854653b2481ebe3a04f671ef0af2aecf3093fc0b..c09f1ac470c4055897f8d6c6201bd8dc421cdbfe 100644
 --- a/src/main/java/net/minecraft/world/entity/Mob.java
 +++ b/src/main/java/net/minecraft/world/entity/Mob.java
-@@ -774,7 +774,7 @@ public abstract class Mob extends LivingEntity {
+@@ -784,7 +784,7 @@ public abstract class Mob extends LivingEntity {
          if (this.level.getDifficulty() == Difficulty.PEACEFUL && this.shouldDespawnInPeaceful()) {
              this.discard();
          } else if (!this.isPersistenceRequired() && !this.requiresCustomPersistence()) {
@@ -34,7 +34,7 @@ index fca40a6ec865589392911beaf07092b7d1c61a47..eb4b21802eefe91753caf509458fd6d9
              if (entityhuman != null) {
                  double d0 = entityhuman.distanceToSqr((Entity) this);
 diff --git a/src/main/java/net/minecraft/world/entity/monster/Silverfish.java b/src/main/java/net/minecraft/world/entity/monster/Silverfish.java
-index 6eaedfabf70b604705ad9a772a2e602c8590b500..97c2c1647fa12650e5963c7c1c746fec2429e3d7 100644
+index 87f66fd33e404367d924137b2d8aac3b06937f43..2dcda3b03796655da443e1b3dd68c6f6bca20d21 100644
 --- a/src/main/java/net/minecraft/world/entity/monster/Silverfish.java
 +++ b/src/main/java/net/minecraft/world/entity/monster/Silverfish.java
 @@ -127,7 +127,7 @@ public class Silverfish extends Monster {
@@ -47,11 +47,11 @@ index 6eaedfabf70b604705ad9a772a2e602c8590b500..97c2c1647fa12650e5963c7c1c746fec
              return false;
          }
 diff --git a/src/main/java/net/minecraft/world/entity/player/Player.java b/src/main/java/net/minecraft/world/entity/player/Player.java
-index 612de4e8c26fd41d300ac09eb59d1ceac248778e..71610fa70cdaf3c5a54250a5814809013a6d228e 100644
+index ec0c4767218f197306b179ed0a9c16a15551fa52..24456bbf2cd9f1878cf545e8d164ff524c321a4c 100644
 --- a/src/main/java/net/minecraft/world/entity/player/Player.java
 +++ b/src/main/java/net/minecraft/world/entity/player/Player.java
-@@ -175,6 +175,9 @@ public abstract class Player extends LivingEntity {
-     private final ItemCooldowns cooldowns;
+@@ -183,6 +183,9 @@ public abstract class Player extends LivingEntity {
+     private Optional<GlobalPos> lastDeathLocation;
      @Nullable
      public FishingHook fishing;
 +    // Paper start
@@ -61,7 +61,7 @@ index 612de4e8c26fd41d300ac09eb59d1ceac248778e..71610fa70cdaf3c5a54250a581480901
      // CraftBukkit start
      public boolean fauxSleeping;
 diff --git a/src/main/java/net/minecraft/world/level/BaseSpawner.java b/src/main/java/net/minecraft/world/level/BaseSpawner.java
-index 212b23a380a4bcdb1d2995ca2ccfc8a1709691bd..31bfc0c491c9a4cc6782b6c284121f96972517ea 100644
+index ab22310d5ab4ad7014b88080cbd44a2881002b55..c5b9b19763fd944b4f31c6d3c9b71d372f8403cf 100644
 --- a/src/main/java/net/minecraft/world/level/BaseSpawner.java
 +++ b/src/main/java/net/minecraft/world/level/BaseSpawner.java
 @@ -51,7 +51,7 @@ public abstract class BaseSpawner {
@@ -74,10 +74,10 @@ index 212b23a380a4bcdb1d2995ca2ccfc8a1709691bd..31bfc0c491c9a4cc6782b6c284121f96
  
      public void clientTick(Level world, BlockPos pos) {
 diff --git a/src/main/java/net/minecraft/world/level/EntityGetter.java b/src/main/java/net/minecraft/world/level/EntityGetter.java
-index 1e420c4230a326da345b2e28442ece26b44f8259..41d20c16ea165cf166c6f3b228bc8261b0ee0d9c 100644
+index 7c5918f84d2b8f9c778258b7e7d745105effb082..cfb286020b8ee87bad7edbda4cd0b999fb607a06 100644
 --- a/src/main/java/net/minecraft/world/level/EntityGetter.java
 +++ b/src/main/java/net/minecraft/world/level/EntityGetter.java
-@@ -71,8 +71,8 @@ public interface EntityGetter {
+@@ -70,8 +70,8 @@ public interface EntityGetter {
          }
      }
  
@@ -88,7 +88,7 @@ index 1e420c4230a326da345b2e28442ece26b44f8259..41d20c16ea165cf166c6f3b228bc8261
          double d = -1.0D;
          Player player = null;
  
-@@ -100,6 +100,27 @@ public interface EntityGetter {
+@@ -99,6 +99,27 @@ public interface EntityGetter {
          return this.getNearestPlayer(x, y, z, maxDistance, predicate);
      }
  
@@ -117,10 +117,10 @@ index 1e420c4230a326da345b2e28442ece26b44f8259..41d20c16ea165cf166c6f3b228bc8261
          for(Player player : this.players()) {
              if (EntitySelector.NO_SPECTATORS.test(player) && EntitySelector.LIVING_ENTITY_STILL_ALIVE.test(player)) {
 diff --git a/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java b/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
-index 3710423e2181533056bb87c40e129eb5d17a9afd..19b0803242c7964db973473c4219db8f6e2171d3 100644
+index 3d7ad34b9fefd2a3f064866c6a3464a9389005e1..5d0d2ac00589da28d26d1efafdea9be22e341af4 100644
 --- a/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
 +++ b/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
-@@ -1867,8 +1867,20 @@ public class CraftPlayer extends CraftHumanEntity implements Player {
+@@ -1965,8 +1965,20 @@ public class CraftPlayer extends CraftHumanEntity implements Player {
      @Override
      public String getLocale() {
          return this.getHandle().locale;

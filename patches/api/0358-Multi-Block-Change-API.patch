@@ -5,10 +5,10 @@ Subject: [PATCH] Multi Block Change API
 
 
 diff --git a/src/main/java/org/bukkit/entity/Player.java b/src/main/java/org/bukkit/entity/Player.java
-index 3a96d1fe95952a1b0be0ef7b3cdf431e5bb8b54f..f954801f6a5d465b8545e75d7ff5af0352d6ec0d 100644
+index b2b28b48e6e7d9f32460b8a65cbe294be4812bd9..c0fc38cacf441273e8430dda31958c15a48fc9b6 100644
 --- a/src/main/java/org/bukkit/entity/Player.java
 +++ b/src/main/java/org/bukkit/entity/Player.java
-@@ -579,6 +579,27 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
+@@ -593,6 +593,27 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
       */
      public void sendBlockDamage(@NotNull Location loc, float progress);
  

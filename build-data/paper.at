@@ -221,6 +221,11 @@ public net.minecraft.world.entity.animal.Fox isFaceplanted()Z
 public net.minecraft.world.entity.animal.Fox setFaceplanted(Z)V
 public net.minecraft.world.entity.animal.Panda getEatCounter()I
 public net.minecraft.world.entity.animal.Panda setEatCounter(I)V
+public net.minecraft.world.entity.animal.Bee isRolling()Z
+public net.minecraft.world.entity.animal.Bee setRolling(Z)V
+public net.minecraft.world.entity.monster.piglin.Piglin isChargingCrossbow()Z
+public net.minecraft.world.entity.monster.Vex hasLimitedLife
+public net.minecraft.world.entity.monster.Vex limitedLifeTicks
 
 # Cook speed multipler API
 public net.minecraft.world.level.block.entity.AbstractFurnaceBlockEntity recipeType
@@ -284,7 +289,7 @@ public net.minecraft.world.level.levelgen.SurfaceRules$Context blockX
 public net.minecraft.world.level.levelgen.SurfaceRules$Context blockY
 public net.minecraft.world.level.levelgen.SurfaceRules$Context blockZ
 public net.minecraft.world.level.levelgen.SurfaceRules$Context context
-public net.minecraft.world.level.levelgen.SurfaceRules$Context system
+public net.minecraft.world.level.levelgen.SurfaceRules$Context randomState
 public net.minecraft.world.level.levelgen.SurfaceRules$LazyYCondition
 public net.minecraft.world.level.levelgen.SurfaceRules$LazyCondition
 public net.minecraft.world.level.levelgen.SurfaceRules$VerticalGradientConditionSource
@@ -324,3 +329,10 @@ protected net.minecraft.world.entity.projectile.Projectile hitCancelled
 
 # Expose firework item directly + manually setting flight ticks
 public net.minecraft.world.entity.projectile.FireworkRocketEntity life
+
+# More Projectile API
+public net.minecraft.world.entity.projectile.FishingHook timeUntilLured
+
+# Teleport API
+public net.minecraft.server.network.ServerGamePacketListenerImpl internalTeleport(DDDFFLjava/util/Set;Z)V
+
