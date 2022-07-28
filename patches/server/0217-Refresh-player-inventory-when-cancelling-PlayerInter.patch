@@ -16,10 +16,10 @@ Refresh the player inventory when PlayerInteractEntityEvent is
 cancelled to avoid this problem.
 
 diff --git a/src/main/java/net/minecraft/server/network/ServerGamePacketListenerImpl.java b/src/main/java/net/minecraft/server/network/ServerGamePacketListenerImpl.java
-index 8b9e569ccefaa5123c966590a9bba77cc8eec64d..ff79bb6e51d8c7e4b61509f7cf95b1282e7a844e 100644
+index 57e3301e5b18d90d6f499fa6a544866a5eca01a9..15e69839cb1da5f0402e9abd155fb67d323b8f5d 100644
 --- a/src/main/java/net/minecraft/server/network/ServerGamePacketListenerImpl.java
 +++ b/src/main/java/net/minecraft/server/network/ServerGamePacketListenerImpl.java
-@@ -2426,6 +2426,7 @@ public class ServerGamePacketListenerImpl implements ServerPlayerConnection, Ser
+@@ -2628,6 +2628,7 @@ public class ServerGamePacketListenerImpl implements ServerPlayerConnection, Tic
                          }
  
                          if (event.isCancelled()) {
