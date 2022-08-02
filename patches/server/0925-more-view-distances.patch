@@ -1,0 +1,92 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: KyGuy2002 <kylanjaeger@gmail.com>
+Date: Tue, 26 Jul 2022 22:53:00 -0700
+Subject: [PATCH] more view distances
+
+
+diff --git a/src/main/java/net/minecraft/server/level/ChunkMap.java b/src/main/java/net/minecraft/server/level/ChunkMap.java
+index 638d438824918bf410d66286f3b738c1c1e3311b..766558e72912451f107a6137372b59bb899fc6ed 100644
+--- a/src/main/java/net/minecraft/server/level/ChunkMap.java
++++ b/src/main/java/net/minecraft/server/level/ChunkMap.java
+@@ -503,6 +503,12 @@ public class ChunkMap extends ChunkStorage implements ChunkHolder.PlayerProvider
+                 case ENDERDRAGON:
+                     configuredSpigotValue = EntityType.ENDER_DRAGON.clientTrackingRange() * 16;
+                     break;
++                case ARMORSTAND:
++                    configuredSpigotValue = spigotWorldConfig.armorstandTrackingRange;
++                    break;
++                case FIREWORKROCKET:
++                    configuredSpigotValue = spigotWorldConfig.fireworkTrackingRange;
++                    break;
+                 default:
+                     throw new IllegalStateException("Missing case for enum " + trackingRangeType);
+             }
+diff --git a/src/main/java/org/spigotmc/SpigotWorldConfig.java b/src/main/java/org/spigotmc/SpigotWorldConfig.java
+index bbf15fbb889670e57bd86377590a1b3abe80b96d..367748b096ab28f48d690912751a86bf093cc707 100644
+--- a/src/main/java/org/spigotmc/SpigotWorldConfig.java
++++ b/src/main/java/org/spigotmc/SpigotWorldConfig.java
+@@ -275,6 +275,8 @@ public class SpigotWorldConfig
+     public int monsterTrackingRange = 48;
+     public int miscTrackingRange = 32;
+     public int otherTrackingRange = 64;
++    public int armorstandTrackingRange = 64;
++    public int fireworkTrackingRange = 128;
+     private void trackingRange()
+     {
+         this.playerTrackingRange = this.getInt( "entity-tracking-range.players", this.playerTrackingRange );
+@@ -282,7 +284,9 @@ public class SpigotWorldConfig
+         this.monsterTrackingRange = this.getInt( "entity-tracking-range.monsters", this.monsterTrackingRange );
+         this.miscTrackingRange = this.getInt( "entity-tracking-range.misc", this.miscTrackingRange );
+         this.otherTrackingRange = this.getInt( "entity-tracking-range.other", this.otherTrackingRange );
+-        this.log( "Entity Tracking Range: Pl " + this.playerTrackingRange + " / An " + this.animalTrackingRange + " / Mo " + this.monsterTrackingRange + " / Mi " + this.miscTrackingRange + " / Other " + this.otherTrackingRange );
++        this.armorstandTrackingRange = this.getInt( "entity-tracking-range.armor_stand", this.armorstandTrackingRange );
++        this.fireworkTrackingRange = this.getInt( "entity-tracking-range.firework_rocket", this.fireworkTrackingRange );
++        this.log( "Entity Tracking Range: Pl " + this.playerTrackingRange + " / An " + this.animalTrackingRange + " / Mo " + this.monsterTrackingRange + " / Mi " + this.miscTrackingRange + " / Armor " + this.armorstandTrackingRange + " / Firework " + this.fireworkTrackingRange + " / Other " + this.otherTrackingRange );
+     }
+ 
+     public int hopperTransfer;
+diff --git a/src/main/java/org/spigotmc/TrackingRange.java b/src/main/java/org/spigotmc/TrackingRange.java
+index e5bcbfe175a697e04886d04543e1278b7e83a184..ad2848bce1a7433ef1f5614df19994665139a505 100644
+--- a/src/main/java/org/spigotmc/TrackingRange.java
++++ b/src/main/java/org/spigotmc/TrackingRange.java
+@@ -3,9 +3,11 @@ package org.spigotmc;
+ import net.minecraft.server.level.ServerPlayer;
+ import net.minecraft.world.entity.Entity;
+ import net.minecraft.world.entity.ExperienceOrb;
++import net.minecraft.world.entity.decoration.ArmorStand;
+ import net.minecraft.world.entity.decoration.ItemFrame;
+ import net.minecraft.world.entity.decoration.Painting;
+ import net.minecraft.world.entity.item.ItemEntity;
++import net.minecraft.world.entity.projectile.FireworkRocketEntity;
+ 
+ public class TrackingRange
+ {
+@@ -31,6 +33,8 @@ public class TrackingRange
+             return config.playerTrackingRange;
+         // Paper start - Simplify and set water mobs to animal tracking range
+         }
++        if (entity instanceof ArmorStand) return config.armorstandTrackingRange;
++        if (entity instanceof FireworkRocketEntity) return config.fireworkTrackingRange;
+         switch (entity.activationType) {
+             case RAIDER:
+             case MONSTER:
+@@ -62,6 +66,8 @@ public class TrackingRange
+             return TrackingRangeType.PLAYER;
+             // Paper start - Simplify and set water mobs to animal tracking range
+         }
++        if (entity instanceof ArmorStand) return TrackingRangeType.ARMORSTAND;
++        if (entity instanceof FireworkRocketEntity) return TrackingRangeType.FIREWORKROCKET;
+         switch (entity.activationType) {
+             case RAIDER:
+             case MONSTER:
+@@ -89,7 +95,9 @@ public class TrackingRange
+         MONSTER,
+         MISC,
+         OTHER,
+-        ENDERDRAGON;
++        ENDERDRAGON,
++        ARMORSTAND,
++        FIREWORKROCKET
+     }
+     // Paper end - optimise entity tracking
+ }
